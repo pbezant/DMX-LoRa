@@ -11,6 +11,7 @@
 #define LOG_CATEGORY_TEST       0x10  // Test patterns execution
 #define LOG_CATEGORY_DEBUG      0x20  // Detailed debug information
 #define LOG_CATEGORY_ERROR      0x40  // Error messages
+#define LOG_CATEGORY_RADIOLIB   0x80  // RadioLib debug output (RLB_PRO, etc.)
 #define LOG_CATEGORY_ALL        0xFF  // All categories
 
 class Logger {
@@ -39,6 +40,7 @@ public:
     static void test(const char* message);
     static void debug(const char* message);
     static void error(const char* message);
+    static void radiolib(const char* message);
     
     // Formatted category-specific log methods
     static void systemf(const char* format, ...);
@@ -48,6 +50,7 @@ public:
     static void testf(const char* format, ...);
     static void debugf(const char* format, ...);
     static void errorf(const char* format, ...);
+    static void radiolibf(const char* format, ...);
 
 private:
     static uint8_t _enabledCategories;

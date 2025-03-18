@@ -290,43 +290,47 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Logging System
 
-The system includes a categorized logging system that allows you to filter serial output based on different message types. This makes debugging easier by focusing on specific aspects of the system.
+The system includes a categorized logging system to help filter serial output for easier debugging. Messages are prefixed with their category for quick identification.
 
 ### Log Categories
 
 - **SYSTEM**: System startup, initialization, and general status messages
-- **DMX**: DMX-related operations and lighting control
-- **LORA**: LoRa/LoRaWAN communication messages
+- **DMX**: DMX-related operations and fixture control
+- **LORA**: LoRa/LoRaWAN communication events
 - **JSON**: JSON parsing and processing
-- **TEST**: Test pattern execution logs
+- **TEST**: Test patterns execution
 - **DEBUG**: Detailed debug information
 - **ERROR**: Error messages
+- **RADIOLIB**: RadioLib library debug messages (RLB_PRO, etc.)
 
 ### Controlling Log Output
 
-To enable or disable specific log categories, you can modify the code in `setup()`:
+You can control which log categories are enabled by modifying the `setup()` function:
 
 ```cpp
 // Enable all categories
-Logger::begin(115200);
+Logger::setCategories(LOG_CATEGORY_ALL);
 
 // Enable only specific categories
-Logger::begin(115200, LOG_CATEGORY_SYSTEM | LOG_CATEGORY_ERROR);
+Logger::setCategories(LOG_CATEGORY_SYSTEM | LOG_CATEGORY_ERROR | LOG_CATEGORY_LORA);
 
-// After initialization, you can change categories
+// Enable or disable individual categories after initialization
 Logger::enableCategory(LOG_CATEGORY_DMX);
 Logger::disableCategory(LOG_CATEGORY_DEBUG);
+
+// To enable RadioLib debug messages (disabled by default as they can be verbose)
+Logger::enableCategory(LOG_CATEGORY_RADIOLIB);
 ```
 
 ### Viewing Logs
 
-Connect to the serial monitor at 115200 baud to see the categorized log output. Each message will be prefixed with its category:
+Connect to the serial monitor at 115200 baud to see the log output. Each message will be prefixed with its category:
 
 ```
-[SYSTEM] DMX LoRa Control System initialized
-[LORA] Joining LoRaWAN network...
-[DMX] Setting channels for fixture at address 1: 255 0 255 0
-[ERROR] Failed to parse JSON payload
+[SYSTEM] Device initialized
+[LORA] Joining TTN...
+[ERROR] Failed to parse JSON: Invalid input
+[RADIOLIB] RLB_PRO: Opening Rx1 window (76 ms timeout)...
 ```
 
 This makes it easier to identify the source of messages and troubleshoot specific components. 

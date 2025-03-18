@@ -71,9 +71,10 @@
 #include <Arduino.h>
 #include <ArduinoJson.h>
 #include <SPI.h>  // Include SPI library explicitly
+#include "Logger.h"
+#include "RadioLibLogger.h"
 #include "LoRaManager.h"
 #include "DmxController.h"
-#include "Logger.h"
 
 // Debug output
 #define SERIAL_BAUD 115200
@@ -457,8 +458,14 @@ void handleDownlink(uint8_t* payload, size_t size, uint8_t port) {
 }
 
 void setup() {
-  // Initialize logger first with all categories enabled
+  // Initialize the Logger first
   Logger::begin(SERIAL_BAUD);
+  
+  // Enable all categories except RadioLib by default (can be noisy)
+  Logger::setCategories(LOG_CATEGORY_ALL & ~LOG_CATEGORY_RADIOLIB);
+  // Uncomment the next line to enable RadioLib debug messages
+  // Logger::enableCategory(LOG_CATEGORY_RADIOLIB);
+  
   delay(2000);
   
   // Set up LED pin

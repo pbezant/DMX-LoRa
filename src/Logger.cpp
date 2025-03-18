@@ -27,6 +27,7 @@ void Logger::begin(unsigned long baud, uint8_t enabledCategories) {
         if (_enabledCategories & LOG_CATEGORY_TEST) Serial.print("TEST ");
         if (_enabledCategories & LOG_CATEGORY_DEBUG) Serial.print("DEBUG ");
         if (_enabledCategories & LOG_CATEGORY_ERROR) Serial.print("ERROR ");
+        if (_enabledCategories & LOG_CATEGORY_RADIOLIB) Serial.print("RADIOLIB ");
         Serial.println();
     }
     Serial.println("=============================");
@@ -105,6 +106,10 @@ void Logger::debug(const char* message) {
 
 void Logger::error(const char* message) {
     log(LOG_CATEGORY_ERROR, message);
+}
+
+void Logger::radiolib(const char* message) {
+    log(LOG_CATEGORY_RADIOLIB, message);
 }
 
 // Formatted category-specific log methods
@@ -227,6 +232,23 @@ void Logger::errorf(const char* format, ...) {
     }
 }
 
+void Logger::radiolibf(const char* format, ...) {
+    if (isCategoryEnabled(LOG_CATEGORY_RADIOLIB)) {
+        char buffer[256]; // Adjust size as needed
+        
+        // Print category prefix
+        int prefixLen = snprintf(buffer, sizeof(buffer), "[RADIOLIB] ");
+        
+        // Format the rest of the message
+        va_list args;
+        va_start(args, format);
+        vsnprintf(buffer + prefixLen, sizeof(buffer) - prefixLen, format, args);
+        va_end(args);
+        
+        Serial.println(buffer);
+    }
+}
+
 const char* Logger::getCategoryName(uint8_t category) {
     switch (category) {
         case LOG_CATEGORY_SYSTEM: return "SYSTEM";
@@ -236,6 +258,7 @@ const char* Logger::getCategoryName(uint8_t category) {
         case LOG_CATEGORY_TEST: return "TEST";
         case LOG_CATEGORY_DEBUG: return "DEBUG";
         case LOG_CATEGORY_ERROR: return "ERROR";
+        case LOG_CATEGORY_RADIOLIB: return "RADIOLIB";
         default: return "UNKNOWN";
     }
 } 
