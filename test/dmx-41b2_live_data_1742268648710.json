@@ -1,7 +1,7 @@
 [
   {
     "name": "ns.down.data.schedule.attempt",
-    "time": "2025-03-17T23:59:04.814464817Z",
+    "time": "2025-03-18T03:30:41.478237313Z",
     "identifiers": [
       {
         "device_ids": {
@@ -11,387 +11,34 @@
           },
           "dev_eui": "70B3D57ED80041B2",
           "join_eui": "0000000000000001",
-          "dev_addr": "27FD4832"
+          "dev_addr": "27FD483F"
         }
       }
     ],
     "data": {
       "@type": "type.googleapis.com/ttn.lorawan.v3.DownlinkMessage",
-      "raw_payload": "YDJI/SegfAB1FLMc",
+      "raw_payload": "YD9I/SegOACvkpzX",
       "payload": {
         "m_hdr": {
           "m_type": "UNCONFIRMED_DOWN"
         },
-        "mic": "dRSzHA==",
+        "mic": "r5Kc1w==",
         "mac_payload": {
           "f_hdr": {
-            "dev_addr": "27FD4832",
+            "dev_addr": "27FD483F",
             "f_ctrl": {
               "adr": true,
               "ack": true
             },
-            "f_cnt": 124
+            "f_cnt": 56
           },
-          "full_f_cnt": 124
+          "full_f_cnt": 56
         }
       },
       "request": {
         "downlink_paths": [
           {
-            "uplink_token": "ChcKFQoJaGVua2Vjb3ZlEgioQEH//yBb1BDEzuaiBxoMCMju4r4GEIv8uMEBIKDD1fHn8JQB"
-          }
-        ],
-        "rx1_delay": 5,
-        "rx1_data_rate": {
-          "lora": {
-            "bandwidth": 500000,
-            "spreading_factor": 9,
-            "coding_rate": "4/5"
-          }
-        },
-        "rx1_frequency": "923900000",
-        "rx2_data_rate": {
-          "lora": {
-            "bandwidth": 500000,
-            "spreading_factor": 12,
-            "coding_rate": "4/5"
-          }
-        },
-        "rx2_frequency": "923300000",
-        "priority": "HIGHEST",
-        "frequency_plan_id": "US_902_928_FSB_2"
-      },
-      "correlation_ids": [
-        "gs:uplink:01JPK8QWPN9GECS07HMNEJMTSE",
-        "ns:downlink:01JPK8QX3E3R2ZXZRTWBZEHVBY",
-        "ns:transmission:01JPK8QX3EY42YW1KZBVMMXKTC"
-      ]
-    },
-    "correlation_ids": [
-      "gs:uplink:01JPK8QWPN9GECS07HMNEJMTSE",
-      "ns:downlink:01JPK8QX3E3R2ZXZRTWBZEHVBY",
-      "ns:transmission:01JPK8QX3EY42YW1KZBVMMXKTC"
-    ],
-    "origin": "ip-10-22-6-235.us-west-1.compute.internal",
-    "context": {
-      "tenant-id": "CgtmbXNpb3RjbG91ZA=="
-    },
-    "visibility": {
-      "rights": [
-        "RIGHT_APPLICATION_TRAFFIC_READ"
-      ]
-    },
-    "unique_id": "01JPK8QX3EXHM8T3RFMJXW5R8S"
-  },
-  {
-    "name": "as.up.data.forward",
-    "time": "2025-03-17T23:59:04.613188461Z",
-    "identifiers": [
-      {
-        "device_ids": {
-          "device_id": "dmx-41b2",
-          "application_ids": {
-            "application_id": "fms-demo-smart-office"
-          },
-          "dev_eui": "70B3D57ED80041B2",
-          "join_eui": "0000000000000001",
-          "dev_addr": "27FD4832"
-        }
-      }
-    ],
-    "data": {
-      "@type": "type.googleapis.com/ttn.lorawan.v3.ApplicationUp",
-      "end_device_ids": {
-        "device_id": "dmx-41b2",
-        "application_ids": {
-          "application_id": "fms-demo-smart-office"
-        },
-        "dev_eui": "70B3D57ED80041B2",
-        "join_eui": "0000000000000001",
-        "dev_addr": "27FD4832"
-      },
-      "correlation_ids": [
-        "gs:uplink:01JPK8QWPN9GECS07HMNEJMTSE"
-      ],
-      "received_at": "2025-03-17T23:59:04.609975988Z",
-      "uplink_message": {
-        "session_key_id": "AZWmZlwS67QA0gLbI00Muw==",
-        "f_port": 1,
-        "f_cnt": 124,
-        "frm_payload": "eyJoYiI6MX0=",
-        "decoded_payload": {
-          "decoded_payload": "{\"hb\":1}",
-          "hb": 1
-        },
-        "decoded_payload_warnings": [
-          "Message format doesn't match expected patterns, but JSON is valid"
-        ],
-        "rx_metadata": [
-          {
-            "gateway_ids": {
-              "gateway_id": "henkecove",
-              "eui": "A84041FFFF205BD4"
-            },
-            "time": "2025-03-17T23:59:04.367142Z",
-            "timestamp": 1952032580,
-            "rssi": -114,
-            "channel_rssi": -114,
-            "snr": -5.5,
-            "uplink_token": "ChcKFQoJaGVua2Vjb3ZlEgioQEH//yBb1BDEzuaiBxoMCMju4r4GEIv8uMEBIKDD1fHn8JQB",
-            "channel_index": 1,
-            "received_at": "2025-03-17T23:59:04.366111055Z"
-          }
-        ],
-        "settings": {
-          "data_rate": {
-            "lora": {
-              "bandwidth": 125000,
-              "spreading_factor": 9,
-              "coding_rate": "4/5"
-            }
-          },
-          "frequency": "904100000",
-          "timestamp": 1952032580,
-          "time": "2025-03-17T23:59:04.367142Z"
-        },
-        "received_at": "2025-03-17T23:59:04.406340750Z",
-        "confirmed": true,
-        "consumed_airtime": "0.185344s",
-        "packet_error_rate": 0.04761905,
-        "network_ids": {
-          "net_id": "000013",
-          "ns_id": "EC656E0000102C53",
-          "tenant_id": "fmsiotcloud",
-          "cluster_id": "nam1",
-          "cluster_address": "nam1.cloud.thethings.industries",
-          "tenant_address": "fmsiotcloud.nam1.cloud.thethings.industries"
-        }
-      }
-    },
-    "correlation_ids": [
-      "gs:uplink:01JPK8QWPN9GECS07HMNEJMTSE"
-    ],
-    "origin": "ip-10-22-4-122.us-west-1.compute.internal",
-    "context": {
-      "tenant-id": "CgtmbXNpb3RjbG91ZA=="
-    },
-    "visibility": {
-      "rights": [
-        "RIGHT_APPLICATION_TRAFFIC_READ"
-      ]
-    },
-    "unique_id": "01JPK8QWX5XFJCZYG41SMA4MEG"
-  },
-  {
-    "name": "as.up.data.decode.warning",
-    "time": "2025-03-17T23:59:04.612939595Z",
-    "identifiers": [
-      {
-        "device_ids": {
-          "device_id": "dmx-41b2",
-          "application_ids": {
-            "application_id": "fms-demo-smart-office"
-          },
-          "dev_eui": "70B3D57ED80041B2",
-          "join_eui": "0000000000000001",
-          "dev_addr": "27FD4831"
-        }
-      }
-    ],
-    "data": {
-      "@type": "type.googleapis.com/ttn.lorawan.v3.ApplicationUplink",
-      "session_key_id": "AZWmZlwS67QA0gLbI00Muw==",
-      "f_port": 1,
-      "f_cnt": 124,
-      "frm_payload": "eyJoYiI6MX0=",
-      "decoded_payload": {
-        "decoded_payload": "{\"hb\":1}",
-        "hb": 1
-      },
-      "decoded_payload_warnings": [
-        "Message format doesn't match expected patterns, but JSON is valid"
-      ],
-      "rx_metadata": [
-        {
-          "gateway_ids": {
-            "gateway_id": "henkecove",
-            "eui": "A84041FFFF205BD4"
-          },
-          "time": "2025-03-17T23:59:04.367142Z",
-          "timestamp": 1952032580,
-          "rssi": -114,
-          "channel_rssi": -114,
-          "snr": -5.5,
-          "uplink_token": "ChcKFQoJaGVua2Vjb3ZlEgioQEH//yBb1BDEzuaiBxoMCMju4r4GEIv8uMEBIKDD1fHn8JQB",
-          "channel_index": 1,
-          "received_at": "2025-03-17T23:59:04.366111055Z"
-        }
-      ],
-      "settings": {
-        "data_rate": {
-          "lora": {
-            "bandwidth": 125000,
-            "spreading_factor": 9,
-            "coding_rate": "4/5"
-          }
-        },
-        "frequency": "904100000",
-        "timestamp": 1952032580,
-        "time": "2025-03-17T23:59:04.367142Z"
-      },
-      "received_at": "2025-03-17T23:59:04.406340750Z",
-      "confirmed": true,
-      "consumed_airtime": "0.185344s",
-      "packet_error_rate": 0.04761905,
-      "network_ids": {
-        "net_id": "000013",
-        "ns_id": "EC656E0000102C53",
-        "tenant_id": "fmsiotcloud",
-        "cluster_id": "nam1",
-        "cluster_address": "nam1.cloud.thethings.industries",
-        "tenant_address": "fmsiotcloud.nam1.cloud.thethings.industries"
-      }
-    },
-    "correlation_ids": [
-      "gs:uplink:01JPK8QWPN9GECS07HMNEJMTSE"
-    ],
-    "origin": "ip-10-22-4-122.us-west-1.compute.internal",
-    "context": {
-      "tenant-id": "CgtmbXNpb3RjbG91ZA=="
-    },
-    "visibility": {
-      "rights": [
-        "RIGHT_APPLICATION_TRAFFIC_READ"
-      ]
-    },
-    "unique_id": "01JPK8QWX4M7B7DPCQGT95WWSF"
-  },
-  {
-    "name": "ns.up.data.process",
-    "time": "2025-03-17T23:59:04.609533290Z",
-    "identifiers": [
-      {
-        "device_ids": {
-          "device_id": "dmx-41b2",
-          "application_ids": {
-            "application_id": "fms-demo-smart-office"
-          },
-          "dev_eui": "70B3D57ED80041B2",
-          "join_eui": "0000000000000001",
-          "dev_addr": "27FD4832"
-        }
-      }
-    ],
-    "data": {
-      "@type": "type.googleapis.com/ttn.lorawan.v3.UplinkMessage",
-      "raw_payload": "gDJI/SeAfAABGCYVd8OZy7XCLLC0",
-      "payload": {
-        "m_hdr": {
-          "m_type": "CONFIRMED_UP"
-        },
-        "mic": "wiywtA==",
-        "mac_payload": {
-          "f_hdr": {
-            "dev_addr": "27FD4832",
-            "f_ctrl": {
-              "adr": true
-            },
-            "f_cnt": 124
-          },
-          "f_port": 1,
-          "frm_payload": "GCYVd8OZy7U=",
-          "full_f_cnt": 124
-        }
-      },
-      "settings": {
-        "data_rate": {
-          "lora": {
-            "bandwidth": 125000,
-            "spreading_factor": 9,
-            "coding_rate": "4/5"
-          }
-        },
-        "frequency": "904100000",
-        "timestamp": 1952032580,
-        "time": "2025-03-17T23:59:04.367142Z"
-      },
-      "rx_metadata": [
-        {
-          "gateway_ids": {
-            "gateway_id": "henkecove",
-            "eui": "A84041FFFF205BD4"
-          },
-          "time": "2025-03-17T23:59:04.367142Z",
-          "timestamp": 1952032580,
-          "rssi": -114,
-          "channel_rssi": -114,
-          "snr": -5.5,
-          "uplink_token": "ChcKFQoJaGVua2Vjb3ZlEgioQEH//yBb1BDEzuaiBxoMCMju4r4GEIv8uMEBIKDD1fHn8JQB",
-          "channel_index": 1,
-          "received_at": "2025-03-17T23:59:04.366111055Z"
-        }
-      ],
-      "received_at": "2025-03-17T23:59:04.406340750Z",
-      "correlation_ids": [
-        "gs:uplink:01JPK8QWPN9GECS07HMNEJMTSE"
-      ],
-      "device_channel_index": 9,
-      "consumed_airtime": "0.185344s"
-    },
-    "correlation_ids": [
-      "gs:uplink:01JPK8QWPN9GECS07HMNEJMTSE"
-    ],
-    "origin": "ip-10-22-6-235.us-west-1.compute.internal",
-    "context": {
-      "tenant-id": "CgtmbXNpb3RjbG91ZA=="
-    },
-    "visibility": {
-      "rights": [
-        "RIGHT_APPLICATION_TRAFFIC_READ"
-      ]
-    },
-    "unique_id": "01JPK8QWX1VV8909971ZGXQWHP"
-  },
-  {
-    "name": "ns.down.data.schedule.attempt",
-    "time": "2025-03-17T23:58:55.356711169Z",
-    "identifiers": [
-      {
-        "device_ids": {
-          "device_id": "dmx-41b2",
-          "application_ids": {
-            "application_id": "fms-demo-smart-office"
-          },
-          "dev_eui": "70B3D57ED80041B2",
-          "join_eui": "0000000000000001",
-          "dev_addr": "27FD4832"
-        }
-      }
-    ],
-    "data": {
-      "@type": "type.googleapis.com/ttn.lorawan.v3.DownlinkMessage",
-      "raw_payload": "YDJI/SegewCXyTm7",
-      "payload": {
-        "m_hdr": {
-          "m_type": "UNCONFIRMED_DOWN"
-        },
-        "mic": "l8k5uw==",
-        "mac_payload": {
-          "f_hdr": {
-            "dev_addr": "27FD4832",
-            "f_ctrl": {
-              "adr": true,
-              "ack": true
-            },
-            "f_cnt": 123
-          },
-          "full_f_cnt": 123
-        }
-      },
-      "request": {
-        "downlink_paths": [
-          {
-            "uplink_token": "ChcKFQoJaGVua2Vjb3ZlEgioQEH//yBb1BCE5qOeBxoMCL7u4r4GEKGV6sADIKCP1cfE8JQB"
+            "uplink_token": "ChcKFQoJaGVua2Vjb3ZlEgioQEH//yBb1BD8qITJBhoLCOHR474GEODz6SAg4IjgyarilwE="
           }
         ],
         "rx1_delay": 5,
@@ -415,17 +62,17 @@
         "frequency_plan_id": "US_902_928_FSB_2"
       },
       "correlation_ids": [
-        "gs:uplink:01JPK8QKEX1111RBGTJER466JE",
-        "ns:downlink:01JPK8QKVWKZNG8A0SZMZNWKDM",
-        "ns:transmission:01JPK8QKVW01HQX39Q49XZ123W"
+        "gs:uplink:01JPKMVBSCY5HTTKV2TB1KNFE6",
+        "ns:downlink:01JPKMVC66VD8JGV4HHAH20EG6",
+        "ns:transmission:01JPKMVC667JYP6NKYTFQF0WHS"
       ]
     },
     "correlation_ids": [
-      "gs:uplink:01JPK8QKEX1111RBGTJER466JE",
-      "ns:downlink:01JPK8QKVWKZNG8A0SZMZNWKDM",
-      "ns:transmission:01JPK8QKVW01HQX39Q49XZ123W"
+      "gs:uplink:01JPKMVBSCY5HTTKV2TB1KNFE6",
+      "ns:downlink:01JPKMVC66VD8JGV4HHAH20EG6",
+      "ns:transmission:01JPKMVC667JYP6NKYTFQF0WHS"
     ],
-    "origin": "ip-10-22-6-235.us-west-1.compute.internal",
+    "origin": "ip-10-22-13-199.us-west-1.compute.internal",
     "context": {
       "tenant-id": "CgtmbXNpb3RjbG91ZA=="
     },
@@ -434,11 +81,11 @@
         "RIGHT_APPLICATION_TRAFFIC_READ"
       ]
     },
-    "unique_id": "01JPK8QKVWE1PJ6FYS7QDQF1S8"
+    "unique_id": "01JPKMVC66SW9H6ZSZ7PP0VZS3"
   },
   {
     "name": "as.up.data.forward",
-    "time": "2025-03-17T23:58:55.157520317Z",
+    "time": "2025-03-18T03:30:41.281232089Z",
     "identifiers": [
       {
         "device_ids": {
@@ -448,7 +95,7 @@
           },
           "dev_eui": "70B3D57ED80041B2",
           "join_eui": "0000000000000001",
-          "dev_addr": "27FD4832"
+          "dev_addr": "27FD483F"
         }
       }
     ],
@@ -461,16 +108,16 @@
         },
         "dev_eui": "70B3D57ED80041B2",
         "join_eui": "0000000000000001",
-        "dev_addr": "27FD4832"
+        "dev_addr": "27FD483F"
       },
       "correlation_ids": [
-        "gs:uplink:01JPK8QKEX1111RBGTJER466JE"
+        "gs:uplink:01JPKMVBSCY5HTTKV2TB1KNFE6"
       ],
-      "received_at": "2025-03-17T23:58:55.154658670Z",
+      "received_at": "2025-03-18T03:30:41.273326395Z",
       "uplink_message": {
-        "session_key_id": "AZWmZlwS67QA0gLbI00Muw==",
+        "session_key_id": "AZWnPUhxwNhMGZ9v4ex7Og==",
         "f_port": 1,
-        "f_cnt": 123,
+        "f_cnt": 54,
         "frm_payload": "eyJzdGF0dXMiOiJETVhfT0sifQ==",
         "decoded_payload": {
           "decoded_payload": "{\"status\":\"DMX_OK\"}",
@@ -485,14 +132,13 @@
               "gateway_id": "henkecove",
               "eui": "A84041FFFF205BD4"
             },
-            "time": "2025-03-17T23:58:54.888424Z",
-            "timestamp": 1942549252,
-            "rssi": -114,
-            "channel_rssi": -114,
-            "snr": -6.8,
-            "uplink_token": "ChcKFQoJaGVua2Vjb3ZlEgioQEH//yBb1BCE5qOeBxoMCL7u4r4GEKGV6sADIKCP1cfE8JQB",
+            "time": "2025-03-18T03:30:41.028590Z",
+            "timestamp": 1763775612,
+            "rssi": -107,
+            "channel_rssi": -107,
+            "uplink_token": "ChcKFQoJaGVua2Vjb3ZlEgioQEH//yBb1BD8qITJBhoLCOHR474GEODz6SAg4IjgyarilwE=",
             "channel_index": 2,
-            "received_at": "2025-03-17T23:58:54.902243319Z"
+            "received_at": "2025-03-18T03:30:41.034356509Z"
           }
         ],
         "settings": {
@@ -504,13 +150,12 @@
             }
           },
           "frequency": "904300000",
-          "timestamp": 1942549252,
-          "time": "2025-03-17T23:58:54.888424Z"
+          "timestamp": 1763775612,
+          "time": "2025-03-18T03:30:41.028590Z"
         },
-        "received_at": "2025-03-17T23:58:54.943742772Z",
+        "received_at": "2025-03-18T03:30:41.069391391Z",
         "confirmed": true,
         "consumed_airtime": "0.246784s",
-        "packet_error_rate": 0.04761905,
         "network_ids": {
           "net_id": "000013",
           "ns_id": "EC656E0000102C53",
@@ -522,9 +167,9 @@
       }
     },
     "correlation_ids": [
-      "gs:uplink:01JPK8QKEX1111RBGTJER466JE"
+      "gs:uplink:01JPKMVBSCY5HTTKV2TB1KNFE6"
     ],
-    "origin": "ip-10-22-4-122.us-west-1.compute.internal",
+    "origin": "ip-10-22-14-53.us-west-1.compute.internal",
     "context": {
       "tenant-id": "CgtmbXNpb3RjbG91ZA=="
     },
@@ -533,11 +178,11 @@
         "RIGHT_APPLICATION_TRAFFIC_READ"
       ]
     },
-    "unique_id": "01JPK8QKNN845JKS5KN06MCKXR"
+    "unique_id": "01JPKMVC019Y35B7JNVY374WWA"
   },
   {
     "name": "as.up.data.decode.warning",
-    "time": "2025-03-17T23:58:55.157212375Z",
+    "time": "2025-03-18T03:30:41.280207166Z",
     "identifiers": [
       {
         "device_ids": {
@@ -553,9 +198,9 @@
     ],
     "data": {
       "@type": "type.googleapis.com/ttn.lorawan.v3.ApplicationUplink",
-      "session_key_id": "AZWmZlwS67QA0gLbI00Muw==",
+      "session_key_id": "AZWnPUhxwNhMGZ9v4ex7Og==",
       "f_port": 1,
-      "f_cnt": 123,
+      "f_cnt": 54,
       "frm_payload": "eyJzdGF0dXMiOiJETVhfT0sifQ==",
       "decoded_payload": {
         "decoded_payload": "{\"status\":\"DMX_OK\"}",
@@ -570,14 +215,13 @@
             "gateway_id": "henkecove",
             "eui": "A84041FFFF205BD4"
           },
-          "time": "2025-03-17T23:58:54.888424Z",
-          "timestamp": 1942549252,
-          "rssi": -114,
-          "channel_rssi": -114,
-          "snr": -6.8,
-          "uplink_token": "ChcKFQoJaGVua2Vjb3ZlEgioQEH//yBb1BCE5qOeBxoMCL7u4r4GEKGV6sADIKCP1cfE8JQB",
+          "time": "2025-03-18T03:30:41.028590Z",
+          "timestamp": 1763775612,
+          "rssi": -107,
+          "channel_rssi": -107,
+          "uplink_token": "ChcKFQoJaGVua2Vjb3ZlEgioQEH//yBb1BD8qITJBhoLCOHR474GEODz6SAg4IjgyarilwE=",
           "channel_index": 2,
-          "received_at": "2025-03-17T23:58:54.902243319Z"
+          "received_at": "2025-03-18T03:30:41.034356509Z"
         }
       ],
       "settings": {
@@ -589,13 +233,12 @@
           }
         },
         "frequency": "904300000",
-        "timestamp": 1942549252,
-        "time": "2025-03-17T23:58:54.888424Z"
+        "timestamp": 1763775612,
+        "time": "2025-03-18T03:30:41.028590Z"
       },
-      "received_at": "2025-03-17T23:58:54.943742772Z",
+      "received_at": "2025-03-18T03:30:41.069391391Z",
       "confirmed": true,
       "consumed_airtime": "0.246784s",
-      "packet_error_rate": 0.04761905,
       "network_ids": {
         "net_id": "000013",
         "ns_id": "EC656E0000102C53",
@@ -606,9 +249,9 @@
       }
     },
     "correlation_ids": [
-      "gs:uplink:01JPK8QKEX1111RBGTJER466JE"
+      "gs:uplink:01JPKMVBSCY5HTTKV2TB1KNFE6"
     ],
-    "origin": "ip-10-22-4-122.us-west-1.compute.internal",
+    "origin": "ip-10-22-14-53.us-west-1.compute.internal",
     "context": {
       "tenant-id": "CgtmbXNpb3RjbG91ZA=="
     },
@@ -617,11 +260,11 @@
         "RIGHT_APPLICATION_TRAFFIC_READ"
       ]
     },
-    "unique_id": "01JPK8QKNN1NKGYAFN1FXM1JE0"
+    "unique_id": "01JPKMVC00KXD42Y603J9253DZ"
   },
   {
     "name": "ns.up.data.process",
-    "time": "2025-03-17T23:58:55.153811008Z",
+    "time": "2025-03-18T03:30:41.272588590Z",
     "identifiers": [
       {
         "device_ids": {
@@ -631,29 +274,29 @@
           },
           "dev_eui": "70B3D57ED80041B2",
           "join_eui": "0000000000000001",
-          "dev_addr": "27FD4832"
+          "dev_addr": "27FD483F"
         }
       }
     ],
     "data": {
       "@type": "type.googleapis.com/ttn.lorawan.v3.UplinkMessage",
-      "raw_payload": "gDJI/SeAewAB7EzTJehKvBO+kIXss9oJX7gHr03NjeU=",
+      "raw_payload": "gD9I/SeANgABezgL0YzJQMtgMlhfdhwouQ+FQeXkOH0=",
       "payload": {
         "m_hdr": {
           "m_type": "CONFIRMED_UP"
         },
-        "mic": "Tc2N5Q==",
+        "mic": "5eQ4fQ==",
         "mac_payload": {
           "f_hdr": {
-            "dev_addr": "27FD4832",
+            "dev_addr": "27FD483F",
             "f_ctrl": {
               "adr": true
             },
-            "f_cnt": 123
+            "f_cnt": 54
           },
           "f_port": 1,
-          "frm_payload": "7EzTJehKvBO+kIXss9oJX7gHrw==",
-          "full_f_cnt": 123
+          "frm_payload": "ezgL0YzJQMtgMlhfdhwouQ+FQQ==",
+          "full_f_cnt": 54
         }
       },
       "settings": {
@@ -665,8 +308,8 @@
           }
         },
         "frequency": "904300000",
-        "timestamp": 1942549252,
-        "time": "2025-03-17T23:58:54.888424Z"
+        "timestamp": 1763775612,
+        "time": "2025-03-18T03:30:41.028590Z"
       },
       "rx_metadata": [
         {
@@ -674,27 +317,26 @@
             "gateway_id": "henkecove",
             "eui": "A84041FFFF205BD4"
           },
-          "time": "2025-03-17T23:58:54.888424Z",
-          "timestamp": 1942549252,
-          "rssi": -114,
-          "channel_rssi": -114,
-          "snr": -6.8,
-          "uplink_token": "ChcKFQoJaGVua2Vjb3ZlEgioQEH//yBb1BCE5qOeBxoMCL7u4r4GEKGV6sADIKCP1cfE8JQB",
+          "time": "2025-03-18T03:30:41.028590Z",
+          "timestamp": 1763775612,
+          "rssi": -107,
+          "channel_rssi": -107,
+          "uplink_token": "ChcKFQoJaGVua2Vjb3ZlEgioQEH//yBb1BD8qITJBhoLCOHR474GEODz6SAg4IjgyarilwE=",
           "channel_index": 2,
-          "received_at": "2025-03-17T23:58:54.902243319Z"
+          "received_at": "2025-03-18T03:30:41.034356509Z"
         }
       ],
-      "received_at": "2025-03-17T23:58:54.943742772Z",
+      "received_at": "2025-03-18T03:30:41.069391391Z",
       "correlation_ids": [
-        "gs:uplink:01JPK8QKEX1111RBGTJER466JE"
+        "gs:uplink:01JPKMVBSCY5HTTKV2TB1KNFE6"
       ],
       "device_channel_index": 10,
       "consumed_airtime": "0.246784s"
     },
     "correlation_ids": [
-      "gs:uplink:01JPK8QKEX1111RBGTJER466JE"
+      "gs:uplink:01JPKMVBSCY5HTTKV2TB1KNFE6"
     ],
-    "origin": "ip-10-22-13-199.us-west-1.compute.internal",
+    "origin": "ip-10-22-6-235.us-west-1.compute.internal",
     "context": {
       "tenant-id": "CgtmbXNpb3RjbG91ZA=="
     },
@@ -703,11 +345,11 @@
         "RIGHT_APPLICATION_TRAFFIC_READ"
       ]
     },
-    "unique_id": "01JPK8QKNHBV8F0MA91V5H7C9V"
+    "unique_id": "01JPKMVBZRWYEKCW5HE39GYVSX"
   },
   {
     "name": "ns.down.data.schedule.attempt",
-    "time": "2025-03-17T23:58:43.070990712Z",
+    "time": "2025-03-18T03:30:20.360965084Z",
     "identifiers": [
       {
         "device_ids": {
@@ -717,35 +359,387 @@
           },
           "dev_eui": "70B3D57ED80041B2",
           "join_eui": "0000000000000001",
-          "dev_addr": "27FD4832"
+          "dev_addr": "27FD483F"
         }
       }
     ],
     "data": {
       "@type": "type.googleapis.com/ttn.lorawan.v3.DownlinkMessage",
-      "raw_payload": "YDJI/SeAegABeQFjow==",
+      "raw_payload": "YD9I/SegNwAfBqT4",
       "payload": {
         "m_hdr": {
           "m_type": "UNCONFIRMED_DOWN"
         },
-        "mic": "eQFjow==",
+        "mic": "Hwak+A==",
         "mac_payload": {
           "f_hdr": {
-            "dev_addr": "27FD4832",
+            "dev_addr": "27FD483F",
+            "f_ctrl": {
+              "adr": true,
+              "ack": true
+            },
+            "f_cnt": 55
+          },
+          "full_f_cnt": 55
+        }
+      },
+      "request": {
+        "downlink_paths": [
+          {
+            "uplink_token": "ChcKFQoJaGVua2Vjb3ZlEgioQEH//yBb1BD80Pu+BhoMCMvR474GEPiQ88cDIODI8PXb4ZcB"
+          }
+        ],
+        "rx1_delay": 5,
+        "rx1_data_rate": {
+          "lora": {
+            "bandwidth": 500000,
+            "spreading_factor": 9,
+            "coding_rate": "4/5"
+          }
+        },
+        "rx1_frequency": "925100000",
+        "rx2_data_rate": {
+          "lora": {
+            "bandwidth": 500000,
+            "spreading_factor": 12,
+            "coding_rate": "4/5"
+          }
+        },
+        "rx2_frequency": "923300000",
+        "priority": "HIGHEST",
+        "frequency_plan_id": "US_902_928_FSB_2"
+      },
+      "correlation_ids": [
+        "gs:uplink:01JPKMTQ5MTMFQE8MBQ076A4SH",
+        "ns:downlink:01JPKMTQJ85JGTMHXDBM6NBH9Q",
+        "ns:transmission:01JPKMTQJ819233GM40KAADRV1"
+      ]
+    },
+    "correlation_ids": [
+      "gs:uplink:01JPKMTQ5MTMFQE8MBQ076A4SH",
+      "ns:downlink:01JPKMTQJ85JGTMHXDBM6NBH9Q",
+      "ns:transmission:01JPKMTQJ819233GM40KAADRV1"
+    ],
+    "origin": "ip-10-22-6-235.us-west-1.compute.internal",
+    "context": {
+      "tenant-id": "CgtmbXNpb3RjbG91ZA=="
+    },
+    "visibility": {
+      "rights": [
+        "RIGHT_APPLICATION_TRAFFIC_READ"
+      ]
+    },
+    "unique_id": "01JPKMTQJ8J2S7Q043PGQM525F"
+  },
+  {
+    "name": "as.up.data.forward",
+    "time": "2025-03-18T03:30:20.162030660Z",
+    "identifiers": [
+      {
+        "device_ids": {
+          "device_id": "dmx-41b2",
+          "application_ids": {
+            "application_id": "fms-demo-smart-office"
+          },
+          "dev_eui": "70B3D57ED80041B2",
+          "join_eui": "0000000000000001",
+          "dev_addr": "27FD483F"
+        }
+      }
+    ],
+    "data": {
+      "@type": "type.googleapis.com/ttn.lorawan.v3.ApplicationUp",
+      "end_device_ids": {
+        "device_id": "dmx-41b2",
+        "application_ids": {
+          "application_id": "fms-demo-smart-office"
+        },
+        "dev_eui": "70B3D57ED80041B2",
+        "join_eui": "0000000000000001",
+        "dev_addr": "27FD483F"
+      },
+      "correlation_ids": [
+        "gs:uplink:01JPKMTQ5MTMFQE8MBQ076A4SH"
+      ],
+      "received_at": "2025-03-18T03:30:20.159595273Z",
+      "uplink_message": {
+        "session_key_id": "AZWnPUhxwNhMGZ9v4ex7Og==",
+        "f_port": 1,
+        "f_cnt": 53,
+        "frm_payload": "eyJoYiI6MX0=",
+        "decoded_payload": {
+          "decoded_payload": "{\"hb\":1}",
+          "hb": 1
+        },
+        "decoded_payload_warnings": [
+          "Message format doesn't match expected patterns, but JSON is valid"
+        ],
+        "rx_metadata": [
+          {
+            "gateway_ids": {
+              "gateway_id": "henkecove",
+              "eui": "A84041FFFF205BD4"
+            },
+            "time": "2025-03-18T03:30:19.913386Z",
+            "timestamp": 1742661756,
+            "rssi": -107,
+            "channel_rssi": -107,
+            "snr": 0.8,
+            "uplink_token": "ChcKFQoJaGVua2Vjb3ZlEgioQEH//yBb1BD80Pu+BhoMCMvR474GEPiQ88cDIODI8PXb4ZcB",
+            "channel_index": 3,
+            "received_at": "2025-03-18T03:30:19.920977145Z"
+          }
+        ],
+        "settings": {
+          "data_rate": {
+            "lora": {
+              "bandwidth": 125000,
+              "spreading_factor": 9,
+              "coding_rate": "4/5"
+            }
+          },
+          "frequency": "904500000",
+          "timestamp": 1742661756,
+          "time": "2025-03-18T03:30:19.913386Z"
+        },
+        "received_at": "2025-03-18T03:30:19.956696485Z",
+        "confirmed": true,
+        "consumed_airtime": "0.185344s",
+        "network_ids": {
+          "net_id": "000013",
+          "ns_id": "EC656E0000102C53",
+          "tenant_id": "fmsiotcloud",
+          "cluster_id": "nam1",
+          "cluster_address": "nam1.cloud.thethings.industries",
+          "tenant_address": "fmsiotcloud.nam1.cloud.thethings.industries"
+        }
+      }
+    },
+    "correlation_ids": [
+      "gs:uplink:01JPKMTQ5MTMFQE8MBQ076A4SH"
+    ],
+    "origin": "ip-10-22-4-122.us-west-1.compute.internal",
+    "context": {
+      "tenant-id": "CgtmbXNpb3RjbG91ZA=="
+    },
+    "visibility": {
+      "rights": [
+        "RIGHT_APPLICATION_TRAFFIC_READ"
+      ]
+    },
+    "unique_id": "01JPKMTQC2024JXP8TMZV6AA1D"
+  },
+  {
+    "name": "as.up.data.decode.warning",
+    "time": "2025-03-18T03:30:20.161804984Z",
+    "identifiers": [
+      {
+        "device_ids": {
+          "device_id": "dmx-41b2",
+          "application_ids": {
+            "application_id": "fms-demo-smart-office"
+          },
+          "dev_eui": "70B3D57ED80041B2",
+          "join_eui": "0000000000000001",
+          "dev_addr": "27FD4831"
+        }
+      }
+    ],
+    "data": {
+      "@type": "type.googleapis.com/ttn.lorawan.v3.ApplicationUplink",
+      "session_key_id": "AZWnPUhxwNhMGZ9v4ex7Og==",
+      "f_port": 1,
+      "f_cnt": 53,
+      "frm_payload": "eyJoYiI6MX0=",
+      "decoded_payload": {
+        "decoded_payload": "{\"hb\":1}",
+        "hb": 1
+      },
+      "decoded_payload_warnings": [
+        "Message format doesn't match expected patterns, but JSON is valid"
+      ],
+      "rx_metadata": [
+        {
+          "gateway_ids": {
+            "gateway_id": "henkecove",
+            "eui": "A84041FFFF205BD4"
+          },
+          "time": "2025-03-18T03:30:19.913386Z",
+          "timestamp": 1742661756,
+          "rssi": -107,
+          "channel_rssi": -107,
+          "snr": 0.8,
+          "uplink_token": "ChcKFQoJaGVua2Vjb3ZlEgioQEH//yBb1BD80Pu+BhoMCMvR474GEPiQ88cDIODI8PXb4ZcB",
+          "channel_index": 3,
+          "received_at": "2025-03-18T03:30:19.920977145Z"
+        }
+      ],
+      "settings": {
+        "data_rate": {
+          "lora": {
+            "bandwidth": 125000,
+            "spreading_factor": 9,
+            "coding_rate": "4/5"
+          }
+        },
+        "frequency": "904500000",
+        "timestamp": 1742661756,
+        "time": "2025-03-18T03:30:19.913386Z"
+      },
+      "received_at": "2025-03-18T03:30:19.956696485Z",
+      "confirmed": true,
+      "consumed_airtime": "0.185344s",
+      "network_ids": {
+        "net_id": "000013",
+        "ns_id": "EC656E0000102C53",
+        "tenant_id": "fmsiotcloud",
+        "cluster_id": "nam1",
+        "cluster_address": "nam1.cloud.thethings.industries",
+        "tenant_address": "fmsiotcloud.nam1.cloud.thethings.industries"
+      }
+    },
+    "correlation_ids": [
+      "gs:uplink:01JPKMTQ5MTMFQE8MBQ076A4SH"
+    ],
+    "origin": "ip-10-22-4-122.us-west-1.compute.internal",
+    "context": {
+      "tenant-id": "CgtmbXNpb3RjbG91ZA=="
+    },
+    "visibility": {
+      "rights": [
+        "RIGHT_APPLICATION_TRAFFIC_READ"
+      ]
+    },
+    "unique_id": "01JPKMTQC12TB3H1X3QYTH46N7"
+  },
+  {
+    "name": "ns.up.data.process",
+    "time": "2025-03-18T03:30:20.159217470Z",
+    "identifiers": [
+      {
+        "device_ids": {
+          "device_id": "dmx-41b2",
+          "application_ids": {
+            "application_id": "fms-demo-smart-office"
+          },
+          "dev_eui": "70B3D57ED80041B2",
+          "join_eui": "0000000000000001",
+          "dev_addr": "27FD483F"
+        }
+      }
+    ],
+    "data": {
+      "@type": "type.googleapis.com/ttn.lorawan.v3.UplinkMessage",
+      "raw_payload": "gD9I/SeANQABeV9uzVClmj0Tc8m+",
+      "payload": {
+        "m_hdr": {
+          "m_type": "CONFIRMED_UP"
+        },
+        "mic": "E3PJvg==",
+        "mac_payload": {
+          "f_hdr": {
+            "dev_addr": "27FD483F",
             "f_ctrl": {
               "adr": true
             },
-            "f_cnt": 122
+            "f_cnt": 53
           },
           "f_port": 1,
-          "full_f_cnt": 122
+          "frm_payload": "eV9uzVClmj0=",
+          "full_f_cnt": 53
+        }
+      },
+      "settings": {
+        "data_rate": {
+          "lora": {
+            "bandwidth": 125000,
+            "spreading_factor": 9,
+            "coding_rate": "4/5"
+          }
+        },
+        "frequency": "904500000",
+        "timestamp": 1742661756,
+        "time": "2025-03-18T03:30:19.913386Z"
+      },
+      "rx_metadata": [
+        {
+          "gateway_ids": {
+            "gateway_id": "henkecove",
+            "eui": "A84041FFFF205BD4"
+          },
+          "time": "2025-03-18T03:30:19.913386Z",
+          "timestamp": 1742661756,
+          "rssi": -107,
+          "channel_rssi": -107,
+          "snr": 0.8,
+          "uplink_token": "ChcKFQoJaGVua2Vjb3ZlEgioQEH//yBb1BD80Pu+BhoMCMvR474GEPiQ88cDIODI8PXb4ZcB",
+          "channel_index": 3,
+          "received_at": "2025-03-18T03:30:19.920977145Z"
+        }
+      ],
+      "received_at": "2025-03-18T03:30:19.956696485Z",
+      "correlation_ids": [
+        "gs:uplink:01JPKMTQ5MTMFQE8MBQ076A4SH"
+      ],
+      "device_channel_index": 11,
+      "consumed_airtime": "0.185344s"
+    },
+    "correlation_ids": [
+      "gs:uplink:01JPKMTQ5MTMFQE8MBQ076A4SH"
+    ],
+    "origin": "ip-10-22-6-235.us-west-1.compute.internal",
+    "context": {
+      "tenant-id": "CgtmbXNpb3RjbG91ZA=="
+    },
+    "visibility": {
+      "rights": [
+        "RIGHT_APPLICATION_TRAFFIC_READ"
+      ]
+    },
+    "unique_id": "01JPKMTQBZ8Z7X6F06NNNCJWMG"
+  },
+  {
+    "name": "ns.down.data.schedule.attempt",
+    "time": "2025-03-18T03:30:02.778442440Z",
+    "identifiers": [
+      {
+        "device_ids": {
+          "device_id": "dmx-41b2",
+          "application_ids": {
+            "application_id": "fms-demo-smart-office"
+          },
+          "dev_eui": "70B3D57ED80041B2",
+          "join_eui": "0000000000000001",
+          "dev_addr": "27FD483F"
+        }
+      }
+    ],
+    "data": {
+      "@type": "type.googleapis.com/ttn.lorawan.v3.DownlinkMessage",
+      "raw_payload": "YD9I/SeANgAB4S5En317MTFwBASxXejDFEkQgXT3JYZjBMSHEreoyFZ+y6Obizsqxz/Gtka1ES9fOaiV36E=",
+      "payload": {
+        "m_hdr": {
+          "m_type": "UNCONFIRMED_DOWN"
+        },
+        "mic": "qJXfoQ==",
+        "mac_payload": {
+          "f_hdr": {
+            "dev_addr": "27FD483F",
+            "f_ctrl": {
+              "adr": true
+            },
+            "f_cnt": 54
+          },
+          "f_port": 1,
+          "frm_payload": "4S5En317MTFwBASxXejDFEkQgXT3JYZjBMSHEreoyFZ+y6Obizsqxz/Gtka1ES9fOQ==",
+          "full_f_cnt": 54
         }
       },
       "request": {
         "class": "CLASS_C",
         "downlink_paths": [
           {
-            "uplink_token": "ChcKFQoJaGVua2Vjb3ZlEgioQEH//yBb1BD0kr+UBxoMCKru4r4GEOf9gLsBIKDaq43475QB"
+            "uplink_token": "ChcKFQoJaGVua2Vjb3ZlEgioQEH//yBb1BC08dOwBhoMCK3R474GELDH3cEDIKD+rY/s4JcB"
           }
         ],
         "rx2_data_rate": {
@@ -759,17 +753,17 @@
         "frequency_plan_id": "US_902_928_FSB_2"
       },
       "correlation_ids": [
-        "as:downlink:01JPK8Q7N2RRKZ7BEK9XY4NSCN",
-        "ns:transmission:01JPK8Q7VYEXXJ7AHRCFJM3TCJ",
-        "rpc:/ttn.lorawan.v3.AppAs/DownlinkQueueReplace:1de871fe-2072-4b4d-8c76-65c3f1d1d13f"
+        "as:downlink:01JPKMT66356T2WAT6TF9T5P77",
+        "ns:transmission:01JPKMT6CTQ8RD61V0QNHB191W",
+        "rpc:/ttn.lorawan.v3.AppAs/DownlinkQueueReplace:cc73ce57-82ad-4674-8968-079cfce54098"
       ]
     },
     "correlation_ids": [
-      "as:downlink:01JPK8Q7N2RRKZ7BEK9XY4NSCN",
-      "ns:transmission:01JPK8Q7VYEXXJ7AHRCFJM3TCJ",
-      "rpc:/ttn.lorawan.v3.AppAs/DownlinkQueueReplace:1de871fe-2072-4b4d-8c76-65c3f1d1d13f"
+      "as:downlink:01JPKMT66356T2WAT6TF9T5P77",
+      "ns:transmission:01JPKMT6CTQ8RD61V0QNHB191W",
+      "rpc:/ttn.lorawan.v3.AppAs/DownlinkQueueReplace:cc73ce57-82ad-4674-8968-079cfce54098"
     ],
-    "origin": "ip-10-22-13-199.us-west-1.compute.internal",
+    "origin": "ip-10-22-6-235.us-west-1.compute.internal",
     "context": {
       "tenant-id": "CgtmbXNpb3RjbG91ZA=="
     },
@@ -778,11 +772,11 @@
         "RIGHT_APPLICATION_TRAFFIC_READ"
       ]
     },
-    "unique_id": "01JPK8Q7VYP9J2MKN3Z59N6V7Q"
+    "unique_id": "01JPKMT6CT6X391TJ79CY1S7MY"
   },
   {
     "name": "as.down.data.receive",
-    "time": "2025-03-17T23:58:42.852107011Z",
+    "time": "2025-03-18T03:30:02.565984036Z",
     "identifiers": [
       {
         "device_ids": {
@@ -799,19 +793,28 @@
     "data": {
       "@type": "type.googleapis.com/ttn.lorawan.v3.ApplicationDownlink",
       "f_port": 1,
+      "frm_payload": "eyJsaWdodHMiOlt7ImNoYW5uZWxzIjpbMCwwLDAsMjU1XSwiYWRkcmVzcyI6MX1dfQ==",
       "decoded_payload": {
-        "test": {
-          "pattern": "ping"
-        }
+        "lights": [
+          {
+            "address": 1,
+            "channels": [
+              0,
+              0,
+              0,
+              255
+            ]
+          }
+        ]
       },
       "correlation_ids": [
-        "as:downlink:01JPK8Q7N2RRKZ7BEK9XY4NSCN",
-        "rpc:/ttn.lorawan.v3.AppAs/DownlinkQueueReplace:1de871fe-2072-4b4d-8c76-65c3f1d1d13f"
+        "as:downlink:01JPKMT66356T2WAT6TF9T5P77",
+        "rpc:/ttn.lorawan.v3.AppAs/DownlinkQueueReplace:cc73ce57-82ad-4674-8968-079cfce54098"
       ]
     },
     "correlation_ids": [
-      "as:downlink:01JPK8Q7N2RRKZ7BEK9XY4NSCN",
-      "rpc:/ttn.lorawan.v3.AppAs/DownlinkQueueReplace:1de871fe-2072-4b4d-8c76-65c3f1d1d13f"
+      "as:downlink:01JPKMT66356T2WAT6TF9T5P77",
+      "rpc:/ttn.lorawan.v3.AppAs/DownlinkQueueReplace:cc73ce57-82ad-4674-8968-079cfce54098"
     ],
     "origin": "ip-10-22-4-122.us-west-1.compute.internal",
     "context": {
@@ -825,17 +828,17 @@
     "authentication": {
       "type": "Bearer",
       "token_type": "AccessToken",
-      "token_id": "SPFSA7HDGL7DX54AFJR65BLT6MJIGN6U7V73NNA"
+      "token_id": "7KON4XA2FU4TFHM73NS2S77TM752NRURNTPLGEI"
     },
     "remote_ip": "70.112.121.77",
     "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36",
-    "unique_id": "01JPK8Q7N470J8CV8DH1SN9RR7"
+    "unique_id": "01JPKMT665TKWMCB2D4TM52DHJ"
   },
   {
-    "time": "2025-03-17T23:58:37.125Z",
+    "time": "2025-03-18T03:29:54.585Z",
     "name": "synthetic.status.cleared",
     "isError": false,
     "isSynthetic": true,
-    "unique_id": "synthetic.1742255917125"
+    "unique_id": "synthetic.1742268594585"
   }
 ]
