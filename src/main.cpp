@@ -73,6 +73,7 @@
 #include <SPI.h>  // Include SPI library explicitly
 #include "LoRaManager.h"
 #include "DmxController.h"
+#include "Logger.h"
 
 // Debug output
 #define SERIAL_BAUD 115200
@@ -173,7 +174,7 @@ bool rainbowStaggered = true;     // Whether to stagger colors across fixtures
  * @return true if processing was successful, false otherwise
  */
 bool processJsonPayload(const String& jsonString) {
-  Serial.println("Processing JSON payload: " + jsonString);
+  Logger::jsonf("Processing JSON payload: %s", jsonString.c_str());
   
   // Create a JSON document
   StaticJsonDocument<MAX_JSON_SIZE> doc;
@@ -183,8 +184,7 @@ bool processJsonPayload(const String& jsonString) {
   
   // Check for parsing errors
   if (error) {
-    Serial.print("JSON parsing failed: ");
-    Serial.println(error.c_str());
+    Logger::errorf("JSON parsing failed: %s", error.c_str());
     return false;
   }
   
@@ -195,7 +195,7 @@ bool processJsonPayload(const String& jsonString) {
     
     // Check if the test object has a pattern field
     if (!testObj.containsKey("pattern")) {
-      Serial.println("JSON format error: 'pattern' field not found in test object");
+      Logger::error("JSON format error: 'pattern' field not found in test object");
       return false;
     }
     
@@ -214,17 +214,13 @@ bool processJsonPayload(const String& jsonString) {
       cycles = max(1, min(cycles, 10)); // Limit cycles between 1 and 10
       speed = max(10, min(speed, 500)); // Limit speed between 10ms and 500ms
       
-      Serial.println("Executing rainbow chase pattern via downlink command");
-      Serial.print("Cycles: ");
-      Serial.print(cycles);
-      Serial.print(", Speed: ");
-      Serial.print(speed);
-      Serial.print("ms, Staggered: ");
-      Serial.println(staggered ? "Yes" : "No");
+      Logger::testf("Executing rainbow chase pattern via downlink command");
+      Logger::testf("Cycles: %d, Speed: %dms, Staggered: %s",
+                    cycles, speed, staggered ? "Yes" : "No");
       
       // Configure test fixtures if none exist
       if (dmx->getNumFixtures() == 0) {
-        Serial.println("Setting up default test fixtures for rainbow pattern");
+        Logger::system("Setting up default test fixtures for rainbow pattern");
         // Initialize 4 test fixtures with 4 channels each (RGBW)
         dmx->initializeFixtures(4, 4);
         
@@ -254,21 +250,13 @@ bool processJsonPayload(const String& jsonString) {
       onTime = max(10, min(onTime, 1000)); // Limit onTime between 10ms and 1000ms
       offTime = max(10, min(offTime, 1000)); // Limit offTime between 10ms and 1000ms
       
-      Serial.println("Executing strobe test pattern via downlink command");
-      Serial.print("Color: ");
-      Serial.print(color);
-      Serial.print(", Count: ");
-      Serial.print(count);
-      Serial.print(", On Time: ");
-      Serial.print(onTime);
-      Serial.print("ms, Off Time: ");
-      Serial.print(offTime);
-      Serial.print("ms, Alternate: ");
-      Serial.println(alternate ? "Yes" : "No");
+      Logger::testf("Executing strobe test pattern via downlink command");
+      Logger::testf("Color: %d, Count: %d, On Time: %dms, Off Time: %dms, Alternate: %s",
+                   color, count, onTime, offTime, alternate ? "Yes" : "No");
       
       // Configure test fixtures if none exist
       if (dmx->getNumFixtures() == 0) {
-        Serial.println("Setting up default test fixtures for strobe pattern");
+        Logger::system("Setting up default test fixtures for strobe pattern");
         // Initialize 4 test fixtures with 4 channels each (RGBW)
         dmx->initializeFixtures(4, 4);
         
@@ -300,16 +288,12 @@ bool processJsonPayload(const String& jsonString) {
       rainbowStepDelay = speed;
       rainbowStaggered = staggered;
       
-      Serial.print("Continuous rainbow mode: ");
-      Serial.print(enabled ? "ENABLED" : "DISABLED");
-      Serial.print(", Speed: ");
-      Serial.print(speed);
-      Serial.print("ms, Staggered: ");
-      Serial.println(staggered ? "Yes" : "No");
+      Logger::testf("Continuous rainbow mode: %s, Speed: %dms, Staggered: %s",
+                   enabled ? "ENABLED" : "DISABLED", speed, staggered ? "Yes" : "No");
       
       // Configure test fixtures if none exist
       if (dmx->getNumFixtures() == 0) {
-        Serial.println("Setting up default test fixtures for continuous rainbow");
+        Logger::system("Setting up default test fixtures for continuous rainbow");
         // Initialize 4 test fixtures with 4 channels each (RGBW)
         dmx->initializeFixtures(4, 4);
         
@@ -330,8 +314,8 @@ bool processJsonPayload(const String& jsonString) {
     }
     else if (pattern == "ping") {
       // Simple ping command for testing downlink connectivity
-      Serial.println("=== PING RECEIVED ===");
-      Serial.println("Downlink communication is working!");
+      Logger::test("=== PING RECEIVED ===");
+      Logger::test("Downlink communication is working!");
       
       // Blink the LED in a distinctive pattern to indicate ping received
       for (int i = 0; i < 3; i++) {
@@ -343,15 +327,14 @@ bool processJsonPayload(const String& jsonString) {
       if (loraInitialized && lora != NULL) {
         String response = "{\"ping_response\":\"ok\"}";
         if (lora->sendString(response, 1, true)) {
-          Serial.println("Ping response sent (confirmed)");
+          Logger::system("Ping response sent (confirmed)");
         }
       }
       
       return true;
     }
     else {
-      Serial.print("Unknown test pattern: ");
-      Serial.println(pattern);
+      Logger::errorf("Unknown test pattern: %s", pattern.c_str());
       return false;
     }
   }
@@ -359,7 +342,7 @@ bool processJsonPayload(const String& jsonString) {
   else if (doc.containsKey("lights")) {
     // Check if the JSON has a "lights" array
     if (!doc["lights"].is<JsonArray>()) {
-      Serial.println("JSON format error: 'lights' array not found");
+      Logger::error("JSON format error: 'lights' array not found");
       return false;
     }
     
@@ -373,7 +356,7 @@ bool processJsonPayload(const String& jsonString) {
     for (JsonObject light : lights) {
       // Check if light has required fields
       if (!light.containsKey("address") || !light.containsKey("channels")) {
-        Serial.println("JSON format error: light missing required fields");
+        Logger::error("JSON format error: light missing required fields");
         continue;  // Skip this light
       }
       
@@ -383,9 +366,7 @@ bool processJsonPayload(const String& jsonString) {
       // Get the channels array
       JsonArray channels = light["channels"].as<JsonArray>();
       
-      Serial.print("Setting DMX channels for fixture at address ");
-      Serial.print(address);
-      Serial.print(": ");
+      Logger::dmxf("Setting DMX channels for fixture at address %d: ", address);
       
       // Set the channel values
       int channelIndex = 0;
@@ -394,21 +375,23 @@ bool processJsonPayload(const String& jsonString) {
         // Set the DMX value for this channel
         dmx->getDmxData()[address + channelIndex] = dmxValue;
         
-        Serial.print(dmxValue);
-        Serial.print(" ");
+        Logger::dmxf("%d ", dmxValue);
         
         channelIndex++;
       }
-      Serial.println();
+      Logger::dmx("");
     }
     
     // Send the updated DMX data
     dmx->sendData();
     
+    Logger::dmx("=== DMX COMMAND RECEIVED ===");
+    Logger::dmxf("Processing %d light fixtures", lights.size());
+    
     return true;
   }
   else {
-    Serial.println("JSON format error: missing 'lights' or 'test' object");
+    Logger::error("JSON format error: missing 'lights' or 'test' object");
     return false;
   }
 }
@@ -422,10 +405,7 @@ bool processJsonPayload(const String& jsonString) {
  * @param port The port on which the data was received
  */
 void handleDownlinkCallback(uint8_t* payload, size_t size, uint8_t port) {
-  Serial.print("Downlink callback triggered on port ");
-  Serial.print(port);
-  Serial.print(", size: ");
-  Serial.println(size);
+  Logger::loraf("Downlink callback triggered on port %d, size: %d", port, size);
   
   // Store the data for processing in the main loop
   if (size <= MAX_JSON_SIZE) {
@@ -439,7 +419,7 @@ void handleDownlinkCallback(uint8_t* payload, size_t size, uint8_t port) {
     delay(50);
     digitalWrite(LED_PIN, LOW);
   } else {
-    Serial.println("ERROR: Received payload exceeds buffer size");
+    Logger::error("ERROR: Received payload exceeds buffer size");
   }
 }
 
@@ -451,10 +431,7 @@ void handleDownlinkCallback(uint8_t* payload, size_t size, uint8_t port) {
  * @param port The port on which the data was received
  */
 void handleDownlink(uint8_t* payload, size_t size, uint8_t port) {
-  Serial.print("Received downlink on port ");
-  Serial.print(port);
-  Serial.print(", size: ");
-  Serial.println(size);
+  Logger::loraf("Received downlink on port %d, size: %d", port, size);
   
   // Convert payload to string
   String payloadStr = "";
@@ -473,15 +450,15 @@ void handleDownlink(uint8_t* payload, size_t size, uint8_t port) {
       DmxController::blinkLED(LED_PIN, 5, 100);
     }
   } else {
-    Serial.println("DMX not initialized, cannot process payload");
+    Logger::error("DMX not initialized, cannot process payload");
     // Blink LED rapidly to indicate error
     DmxController::blinkLED(LED_PIN, 5, 100);
   }
 }
 
 void setup() {
-  // Initialize serial first
-  Serial.begin(SERIAL_BAUD);
+  // Initialize logger first with all categories enabled
+  Logger::begin(SERIAL_BAUD);
   delay(2000);
   
   // Set up LED pin
@@ -491,34 +468,32 @@ void setup() {
   DmxController::blinkLED(LED_PIN, 2, 500);
   
   // Print startup message
-  Serial.println("\n\n===== DMX LoRa Control System =====");
-  Serial.println("Initializing...");
+  Logger::system("===== DMX LoRa Control System =====");
+  Logger::system("Initializing...");
   
   // Print ESP-IDF version
-  Serial.print("ESP-IDF Version: ");
-  Serial.println(ESP.getSdkVersion());
+  Logger::systemf("ESP-IDF Version: %s", ESP.getSdkVersion());
   
   // Print memory info
-  Serial.print("Free heap at startup: ");
-  Serial.println(ESP.getFreeHeap());
+  Logger::systemf("Free heap at startup: %d", ESP.getFreeHeap());
   
   // Print LoRa pin configuration for debugging
-  Serial.println("\nLoRa Pin Configuration:");
-  Serial.printf("CS Pin: %d\n", LORA_CS_PIN);
-  Serial.printf("DIO1 Pin: %d\n", LORA_DIO1_PIN);
-  Serial.printf("Reset Pin: %d\n", LORA_RESET_PIN);
-  Serial.printf("Busy Pin: %d\n", LORA_BUSY_PIN);
-  Serial.printf("SPI SCK: %d, MISO: %d, MOSI: %d\n", LORA_SPI_SCK, LORA_SPI_MISO, LORA_SPI_MOSI);
-  Serial.println("Frequency: Default to US915 (United States) - but configurable to other bands");
-  Serial.println("Default frequency band is US915 with subband 2");
+  Logger::system("\nLoRa Pin Configuration:");
+  Logger::debugf("CS Pin: %d", LORA_CS_PIN);
+  Logger::debugf("DIO1 Pin: %d", LORA_DIO1_PIN);
+  Logger::debugf("Reset Pin: %d", LORA_RESET_PIN);
+  Logger::debugf("Busy Pin: %d", LORA_BUSY_PIN);
+  Logger::debugf("SPI SCK: %d, MISO: %d, MOSI: %d", LORA_SPI_SCK, LORA_SPI_MISO, LORA_SPI_MOSI);
+  Logger::lora("Frequency: Default to US915 (United States) - but configurable to other bands");
+  Logger::lora("Default frequency band is US915 with subband 2");
   
   // Initialize SPI for LoRa
   SPI.begin(LORA_SPI_SCK, LORA_SPI_MISO, LORA_SPI_MOSI);
-  Serial.println("SPI initialized for LoRa");
+  Logger::lora("SPI initialized for LoRa");
   delay(100); // Short delay after SPI init
   
   // Initialize LoRaWAN
-  Serial.println("\nInitializing LoRaWAN...");
+  Logger::lora("Initializing LoRaWAN...");
   
   try {
     // Create delay before LoRa initialization
@@ -526,86 +501,83 @@ void setup() {
     
     // Create a new LoRaManager with default US915 band and subband 2 (can be changed for other regions)
     lora = new LoRaManager(US915, 2);
-    Serial.println("LoRaManager instance created, attempting to initialize radio...");
+    Logger::system("LoRaManager instance created, attempting to initialize radio...");
     
     // Add delay before begin
     delay(100);
     
     if (lora->begin(LORA_CS_PIN, LORA_DIO1_PIN, LORA_RESET_PIN, LORA_BUSY_PIN)) {
-      Serial.println("LoRaWAN module initialized successfully!");
+      Logger::system("LoRaWAN module initialized successfully!");
       
       // Set credentials
       lora->setCredentials(joinEUI, devEUI, appKey, nwkKey);
-      Serial.println("LoRaWAN credentials set");
+      Logger::system("LoRaWAN credentials set");
       
       // Register the downlink callback
       lora->setDownlinkCallback(handleDownlinkCallback);
-      Serial.println("Downlink callback registered");
+      Logger::system("Downlink callback registered");
       
       // Join network
-      Serial.println("Joining LoRaWAN network...");
+      Logger::system("Joining LoRaWAN network...");
       if (lora->joinNetwork()) {
-        Serial.println("Successfully joined LoRaWAN network!");
+        Logger::system("Successfully joined LoRaWAN network!");
         
         // Add delay to allow session establishment to complete
-        Serial.println("Waiting for session establishment...");
+        Logger::system("Waiting for session establishment...");
         delay(7000);  // 7 second delay after join for more reliable session establishment
         
         loraInitialized = true;
         DmxController::blinkLED(LED_PIN, 3, 300);  // 3 blinks for successful join
       } else {
-        Serial.print("Failed to join LoRaWAN network. Error code: ");
-        Serial.println(lora->getLastErrorCode());
+        Logger::errorf("Failed to join LoRaWAN network. Error code: %d", lora->getLastErrorCode());
         DmxController::blinkLED(LED_PIN, 4, 200);  // 4 blinks for join failure
       }
     } else {
-      Serial.print("Failed to initialize LoRaWAN. Error code: ");
-      Serial.println(lora->getLastErrorCode());
+      Logger::errorf("Failed to initialize LoRaWAN. Error code: %d", lora->getLastErrorCode());
       DmxController::blinkLED(LED_PIN, 5, 100);  // 5 blinks for init failure
     }
   } catch (...) {
-    Serial.println("ERROR: Exception during LoRaWAN initialization!");
+    Logger::error("ERROR: Exception during LoRaWAN initialization!");
     lora = NULL;
   }
   
   // Initialize DMX with error handling
-  Serial.println("\nInitializing DMX controller...");
+  Logger::system("Initializing DMX controller...");
   
   try {
     dmx = new DmxController(DMX_PORT, DMX_TX_PIN, DMX_RX_PIN, DMX_DIR_PIN);
-    Serial.println("DMX controller object created");
+    Logger::system("DMX controller object created");
     
     // Initialize DMX
     dmx->begin();
     dmxInitialized = true;
-    Serial.println("DMX controller initialized successfully!");
+    Logger::system("DMX controller initialized successfully!");
     
     // Set initial values to zero and send to make sure fixtures are clear
     dmx->clearAllChannels();
     dmx->sendData();
-    Serial.println("DMX channels cleared");
+    Logger::system("DMX channels cleared");
   } catch (...) {
-    Serial.println("ERROR: Exception during DMX initialization!");
+    Logger::error("ERROR: Exception during DMX initialization!");
     dmx = NULL;
     dmxInitialized = false;
     DmxController::blinkLED(LED_PIN, 5, 100);  // Error indicator
   }
   
-  Serial.println("\nSetup complete!");
-  Serial.print("Free heap after setup: ");
-  Serial.println(ESP.getFreeHeap());
+  Logger::system("Setup complete!");
+  Logger::systemf("Free heap after setup: %d", ESP.getFreeHeap());
   
   // Send an uplink message to confirm device is online
   if (loraInitialized) {
     // Add delay before first transmission to ensure network is ready
-    Serial.println("Preparing to send first uplink...");
+    Logger::system("Preparing to send first uplink...");
     delay(2000);  // 2 second delay before first uplink
     
     String message = "{\"status\":\"online\",\"dmx\":" + String(dmxInitialized ? "true" : "false") + "}";
     if (lora->sendString(message, 1, true)) { // Changed to confirmed uplink
-      Serial.println("Status uplink sent successfully (confirmed)");
+      Logger::system("Status uplink sent successfully (confirmed)");
     } else {
-      Serial.println("Failed to send status uplink");
+      Logger::error("Failed to send status uplink");
     }
   }
   
@@ -613,7 +585,7 @@ void setup() {
   if (dmxInitialized) {
     // Configure some test fixtures if none exist
     if (dmx->getNumFixtures() == 0) {
-      Serial.println("\nSetting up test fixtures...");
+      Logger::system("Setting up test fixtures...");
       // Initialize 4 test fixtures with 4 channels each (RGBW)
       dmx->initializeFixtures(4, 4);
       
@@ -623,8 +595,8 @@ void setup() {
       dmx->setFixtureConfig(2, "Fixture 3", 9, 9, 10, 11, 12);
       dmx->setFixtureConfig(3, "Fixture 4", 13, 13, 14, 15, 16);
       
-      Serial.println("DMX fixtures configured. No demo will run automatically.");
-      Serial.println("Send a downlink command to control the lights.");
+      Logger::system("DMX fixtures configured. No demo will run automatically.");
+      Logger::system("Send a downlink command to control the lights.");
     }
     
     // Ensure all channels are clear at startup
@@ -652,18 +624,15 @@ void loop() {
       jsonString += (char)receivedData[i];
     }
     
-    Serial.print("Processing received data on port ");
-    Serial.print(receivedPort);
-    Serial.print(", data: ");
-    Serial.println(jsonString);
+    Logger::loraf("Processing received data on port %d, data: %s", receivedPort, jsonString.c_str());
     
     // Process the received data as JSON
     if (processJsonPayload(jsonString)) {
-      Serial.println("Successfully processed downlink payload");
+      Logger::system("Successfully processed downlink payload");
       // Blink LED to indicate successful processing
       DmxController::blinkLED(LED_PIN, 2, 200);
     } else {
-      Serial.println("Failed to process downlink payload");
+      Logger::error("Failed to process downlink payload");
     }
     
     // Reset the data received flag
@@ -694,17 +663,11 @@ void loop() {
     int rx1Timeout = lora->getRx1Timeout();
     int rx2Timeout = lora->getRx2Timeout();
     
-    Serial.println("\n----- LoRaWAN RX Window Info -----");
-    Serial.print("RX1 Delay: ");
-    Serial.print(rx1Delay);
-    Serial.println(" seconds");
-    Serial.print("RX1 Window Timeout: ");
-    Serial.print(rx1Timeout);
-    Serial.println(" ms");
-    Serial.print("RX2 Window Timeout: ");
-    Serial.print(rx2Timeout);
-    Serial.println(" ms");
-    Serial.println("----------------------------------\n");
+    Logger::loraf("\n----- LoRaWAN RX Window Info -----");
+    Logger::loraf("RX1 Delay: %d seconds", rx1Delay);
+    Logger::loraf("RX1 Window Timeout: %d ms", rx1Timeout);
+    Logger::loraf("RX2 Window Timeout: %d ms", rx2Timeout);
+    Logger::loraf("----------------------------------\n");
   }
   
   // Send heartbeat ping every 30 seconds to create downlink opportunity
@@ -713,13 +676,13 @@ void loop() {
     
     // Only send heartbeat if lora is initialized and joined
     if (lora != NULL && lora->isNetworkJoined()) {
-      Serial.println("Sending heartbeat ping (confirmed uplink)...");
+      Logger::lora("Sending heartbeat ping (confirmed uplink)...");
       
       // Send a minimal payload as confirmed uplink
       if (lora->sendString("{\"hb\":1}", 1, true)) {
-        Serial.println("Heartbeat ping sent successfully!");
+        Logger::lora("Heartbeat ping sent successfully!");
       } else {
-        Serial.println("Failed to send heartbeat ping.");
+        Logger::error("Failed to send heartbeat ping.");
       }
     }
   }
@@ -735,14 +698,14 @@ void loop() {
       message += dmxInitialized ? "DMX_OK" : "DMX_ERROR";
       message += "\"}";
       
-      Serial.println("Sending status update (confirmed uplink)...");
+      Logger::system("Sending status update (confirmed uplink)...");
       
       // Send the status message as a confirmed uplink
       if (lora->sendString(message, 1, true)) {
-        Serial.println("Status update sent successfully!");
+        Logger::system("Status update sent successfully!");
         // Keep the regular interval of 1 minute for the next update
       } else {
-        Serial.println("Failed to send status update. Will retry in 30 seconds.");
+        Logger::error("Failed to send status update. Will retry in 30 seconds.");
         // Adjust the last status update time to retry sooner
         lastStatusUpdate = currentMillis - 30000;
       }

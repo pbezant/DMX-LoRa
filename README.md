@@ -168,7 +168,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ### Example Commands
 
-1. **Ping Command**
+1. **Ping Test Command**
    ```json
    {
      "test": {
@@ -180,7 +180,65 @@ This project is licensed under the MIT License - see the LICENSE file for detail
    - Expected Response: `{"ping_response":"ok"}`
    - Device Action: Blinks LED 3 times
 
-2. **DMX Control - Full Brightness**
+2. **Rainbow Chase Test Pattern**
+   ```json
+   {
+     "test": {
+       "pattern": "rainbow",
+       "cycles": 3,
+       "speed": 50,
+       "staggered": true
+     }
+   }
+   ```
+   - Purpose: Run a rainbow chase pattern across all fixtures
+   - Optional Parameters:
+     - `cycles`: Number of color cycles (1-10, default: 3)
+     - `speed`: Milliseconds between updates (10-500, default: 50)
+     - `staggered`: Create chase effect across fixtures (default: true)
+   - Expected Response: `{"status":"DMX_OK"}`
+
+3. **Strobe Test Pattern**
+   ```json
+   {
+     "test": {
+       "pattern": "strobe",
+       "color": 1,
+       "count": 20,
+       "onTime": 50,
+       "offTime": 50,
+       "alternate": false
+     }
+   }
+   ```
+   - Purpose: Flash lights in a strobe pattern
+   - Optional Parameters:
+     - `color`: 0=white, 1=red, 2=green, 3=blue (default: 0)
+     - `count`: Number of flashes (1-100, default: 20)
+     - `onTime`: Milliseconds for on phase (10-1000, default: 50)
+     - `offTime`: Milliseconds for off phase (10-1000, default: 50)
+     - `alternate`: Alternate between fixtures (default: false)
+   - Expected Response: `{"status":"DMX_OK"}`
+
+4. **Continuous Rainbow Mode**
+   ```json
+   {
+     "test": {
+       "pattern": "continuous",
+       "enabled": true,
+       "speed": 30,
+       "staggered": true
+     }
+   }
+   ```
+   - Purpose: Enable/disable continuous rainbow effect
+   - Optional Parameters:
+     - `enabled`: true to enable, false to disable (default: false)
+     - `speed`: Milliseconds between updates (5-500, default: 30)
+     - `staggered`: Create chase effect across fixtures (default: true)
+   - Expected Response: `{"status":"DMX_OK"}`
+
+5. **DMX Control - Full Brightness**
    ```json
    {
      "lights": [
@@ -193,24 +251,26 @@ This project is licensed under the MIT License - see the LICENSE file for detail
    ```
    - Purpose: Set all channels of a light fixture to maximum brightness
    - Expected Response: `{"status":"DMX_OK"}`
-   - Device Action: Sends DMX data to the specified fixture
 
-3. **DMX Control - Individual Channels**
+6. **DMX Control - RGB Example (Blue and Green)**
    ```json
    {
      "lights": [
        {
          "address": 1,
-         "channels": [255, 0, 255, 0, 255, 0, 255, 0]
+         "channels": [0, 0, 255, 0, 0, 0, 0, 0]
+       },
+       {
+         "address": 2,
+         "channels": [0, 255, 0, 0, 0, 0, 0, 0]
        }
      ]
    }
    ```
-   - Purpose: Set alternating channels to full brightness and off
+   - Purpose: Set fixture 1 to blue and fixture 2 to green
    - Expected Response: `{"status":"DMX_OK"}`
-   - Device Action: Sends DMX data to the specified fixture
 
-4. **DMX Control - Multiple Fixtures**
+7. **DMX Control - Multiple Fixtures**
    ```json
    {
      "lights": [
@@ -227,4 +287,46 @@ This project is licensed under the MIT License - see the LICENSE file for detail
    ```
    - Purpose: Control multiple fixtures with different channel values
    - Expected Response: `{"status":"DMX_OK"}`
-   - Device Action: Sends DMX data to all specified fixtures 
+
+## Logging System
+
+The system includes a categorized logging system that allows you to filter serial output based on different message types. This makes debugging easier by focusing on specific aspects of the system.
+
+### Log Categories
+
+- **SYSTEM**: System startup, initialization, and general status messages
+- **DMX**: DMX-related operations and lighting control
+- **LORA**: LoRa/LoRaWAN communication messages
+- **JSON**: JSON parsing and processing
+- **TEST**: Test pattern execution logs
+- **DEBUG**: Detailed debug information
+- **ERROR**: Error messages
+
+### Controlling Log Output
+
+To enable or disable specific log categories, you can modify the code in `setup()`:
+
+```cpp
+// Enable all categories
+Logger::begin(115200);
+
+// Enable only specific categories
+Logger::begin(115200, LOG_CATEGORY_SYSTEM | LOG_CATEGORY_ERROR);
+
+// After initialization, you can change categories
+Logger::enableCategory(LOG_CATEGORY_DMX);
+Logger::disableCategory(LOG_CATEGORY_DEBUG);
+```
+
+### Viewing Logs
+
+Connect to the serial monitor at 115200 baud to see the categorized log output. Each message will be prefixed with its category:
+
+```
+[SYSTEM] DMX LoRa Control System initialized
+[LORA] Joining LoRaWAN network...
+[DMX] Setting channels for fixture at address 1: 255 0 255 0
+[ERROR] Failed to parse JSON payload
+```
+
+This makes it easier to identify the source of messages and troubleshoot specific components. 
